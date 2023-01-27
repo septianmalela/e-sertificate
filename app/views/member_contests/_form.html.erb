@@ -1,0 +1,14 @@
+<%= form_with(model: member_contest, class: "mb-7") do |form| %>
+  <%= hidden_field_tag 'school_id', @school.id %>
+  <div class="mb-5 row">
+    <div class="col-md-6 col-12 pt-3">
+      <%= form.text_field :name, placeholder: "Nama Peserta", class: "form-control" %>
+    </div>
+    <div class="col-md-4 col-12 pt-3">
+      <%= form.select :list_contest, options_for_select(@list_contests, member_contest.list_contest), { include_blank: 'Mata Lomba' }, class: 'form-control' %>
+    </div>
+    <div class="col-md-1 col-12 pt-3">
+      <%= form.submit "Save", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,42 @@
+<div class="container pt-3">
+  <%= link_to 'Back', root_path, class: 'btn btn-sm btn-primary' %>
+  <h4 class="pb-3">Show <%= @school.name_school %></h4>
+
+  <h4>Peserta Lomba</h4>
+  <% if notice.present? %>
+    <div class="alert alert-primary" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <% if alert.present? %>
+    <div class="alert alert-danger" role="alert">
+      <%= alert %>
+    </div>
+  <% end %>
+
+  <div class="pt-2">
+    <%= render "member_contests/form", member_contest: @member_contest %>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Nama Peserta</th>
+        <th scope="col">Mata Lomba</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <%= no_table_record(@member_contests, '4') %>
+    <tbody>
+      <% @member_contests.each_with_index do |member_contest, idx| %>
+        <% next if member_contest.new_record? %>
+
+        <%= render partial: 'member_contests/member_contest', locals: { member_contest: member_contest, idx: idx } %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div id="show-modal-member-contest"></div>
+<div id="show-modal-member-contest-peserta"></div>

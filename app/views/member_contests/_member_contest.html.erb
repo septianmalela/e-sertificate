@@ -1,0 +1,10 @@
+<tr>
+  <th scope="row"><%= idx + 1 %></th>
+  <td><%= member_contest.name %></td>
+  <td><%= member_contest.list_contest %></td>
+  <td>
+    <%= link_to "Show", member_contest_path(member_contest, school_id: @school.id), class: 'btn btn-sm btn-primary', remote: true %>
+    <%= link_to "Edit", edit_member_contest_path(member_contest, school_id: @school.id), class: 'btn btn-sm btn-warning', remote: true %>
+    <%= link_to "Delete", member_contest_path(member_contest, school_id: @school.id), class: 'btn btn-sm btn-danger', 'data-confirm' => 'Are You Sure?', method: :delete %>
+  </td>
+</tr>

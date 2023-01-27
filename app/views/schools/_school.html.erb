@@ -1,0 +1,9 @@
+<tr>
+  <th scope="row"><%= idx + 1 %></th>
+  <td><%= school.name_school %></td>
+  <td>
+    <%= link_to "Show", school_path(school), class: 'btn btn-sm btn-primary' %>
+    <%= link_to "Edit", edit_school_path(school), class: 'btn btn-sm btn-warning', remote: true %>
+    <%= link_to "Delete", school_path(school), class: 'btn btn-sm btn-danger', 'data-confirm' => 'Are You Sure?', method: :delete %>
+  </td>
+</tr>

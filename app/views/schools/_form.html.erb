@@ -1,0 +1,10 @@
+<%= form_with(model: school, class: "mb-7") do |form| %>
+  <div class="mb-5 row">
+    <div class="col-md-6">
+      <%= form.text_field :name_school, placeholder: "Add new school", class: "form-control" %>
+    </div>
+    <div class="col-md-1">
+      <%= form.submit "Save", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
