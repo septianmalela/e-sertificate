@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <%#= wicked_pdf_stylesheet_link_tag "pdf" -%>
+  </head>
+  <body>
+    <% case params[:list_contest] %>
+    <% when 'AYO SIAGA BENCANA' %>
+      <% looping = (1..3).to_a %>
+    <% when 'HAND WASHING DANCE' %>
+      <% looping = (1..5).to_a %>
+    <% when 'TANDU DARURAT PUTRA TUTUP MATA', 'TANDU DARURAT PUTRI TUTUP MATA', 'PERTOLONGAN PERTAMA PUTRA', 'PERTOLONGAN PERTAMA PUTRI', 'REMAJA SEHAT PEDULI SESAMA' %>
+      <% looping = (1..2).to_a %>
+    <% when 'TANDU DARURAT OFFICIAL' %>
+      <% looping = [1] %>
+    <% end %>
+    <% @sertifications.each do |sertification| %>
+      <% url_file = sertification.url_link %>
+      <%# { width: 1430, height: 1000 } %>
+      <%= wicked_pdf_image_tag url_file rescue nil %>
+    <% end %>
+  </body>
+</html>

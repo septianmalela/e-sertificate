@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <%#= wicked_pdf_stylesheet_link_tag "pdf" -%>
+  </head>
+  <body>
+    <% member_contests.each do |member_contest| %>
+      <% (1..member_contest.total_peserta).to_a.each do |num| %>
+        <%= wicked_pdf_image_tag member_contest.url_sertification rescue nil %>
+      <% end %>
+      <%# { width: 1430, height: 1000 } %>
+    <% end %>
+
+    <%# member_contests.each do |member_contest| %>
+      <%#= wicked_pdf_image_tag member_contest.url_file rescue nil %>
+      <%# { width: 1430, height: 1000 } %>
+    <%# end %>
+  </body>
+</html>

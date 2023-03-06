@@ -54,3 +54,19 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# GEM Import Data Excel
+gem "roo", "~> 2.9.0"
+
+# GEM RAILS MAGICKDRAW
+
+# GEM PDF
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
+# GEM UPLOAD IMAGE & PROCESSING IMAGE
+gem "shrine", "~> 3.0"
+gem 'rmagick'
+
+# Upload file to google drive
+gem 'google_drive'

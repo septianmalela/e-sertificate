@@ -2,7 +2,7 @@ class SchoolsController < ApplicationController
   before_action :get_school, only: %i[edit update destroy show]
 
   def index
-    @schools = School.order(created_at: :desc)
+    @schools = School.order(type_pmr: :asc, created_at: :desc)
     @school  = School.new
   end
 
@@ -48,6 +48,20 @@ class SchoolsController < ApplicationController
         format.html { redirect_to schools_url, alert: @school.errors.full_messages.to_sentence }
       end
     end
+  end
+
+  def export_sertification_member_contest
+    @member_contests = SchoolChampion.first.sertification_member_contests
+    template         = "schools/export_sertification_member_contest.pdf.erb"
+    margin_pdf       = { top: 0, bottom: 0, left: 0, right: 0 }
+
+    render pdf: "Piagam Penghargaan",
+      locals: { member_contests: @member_contests },
+      template: template,
+   # disposition: 'attachment',
+        layout: "layouts/application.pdf",
+     page_size: 'A4',
+        margin: margin_pdf
   end
 
   def school_params

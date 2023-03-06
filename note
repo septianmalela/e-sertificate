@@ -1,0 +1,27 @@
+Suci ada yg kurang cek lagi datanya
+1. smpn 2 katapang(ada 2) -> di excel nomor 2 & 26
+2. SMP BINA NEGARA 2(ada 2) -> di excel nomor 4 & 13
+3. smpn 1 cikancung(ada 2) -> di excel nomor 22 & 5
+
+{ nama_sekolah: 'NAMA SEKOLAH', peserta_lomba: [['tandu', 2]] }
+
+hash_school = []
+
+School.first(1).each do |school|
+  hash_school << { nama_sekolah: school.name_school, peserta_lomba: school.member_contests.map {|a| [a.name, a.total_peserta]} }
+end
+
+Auxilium D'Uno
+
+pdf_html = ActionController::Base.new.render_to_string(template: 'controller_name/action_name', layout: 'pdf')
+pdf = WickedPdf.new.pdf_from_string(pdf_html)
+
+save_path = Rails.root.join('public', 'uploads', "Auxilium D'Uno", "WIRA", "#{school_champion.name_school}", "") Rails.root.join('pdfs','filename.pdf')
+File.open(save_path, 'wb') do |file|
+  file << pdf
+end
+
+SchoolChampion.all.each do |school|
+  group_by_contests = school.sertification_member_contests.group_by(&:number_member_contest)
+  SertificationMemberContest.render_to_pdf(school, group_by_contests)
+end

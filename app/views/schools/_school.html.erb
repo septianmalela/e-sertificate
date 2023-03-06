@@ -1,9 +1,11 @@
 <tr>
   <th scope="row"><%= idx + 1 %></th>
   <td><%= school.name_school %></td>
+  <td><%= school.type_pmr %></td>
   <td>
     <%= link_to "Show", school_path(school), class: 'btn btn-sm btn-primary' %>
     <%= link_to "Edit", edit_school_path(school), class: 'btn btn-sm btn-warning', remote: true %>
     <%= link_to "Delete", school_path(school), class: 'btn btn-sm btn-danger', 'data-confirm' => 'Are You Sure?', method: :delete %>
+    <%= link_to "Export Sertification", export_sertification_member_contest_schools_path(format: 'pdf', school_id: school.id), target: true, class: 'btn btn-sm btn-primary' %>
   </td>
 </tr>
