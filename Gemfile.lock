@@ -225,7 +225,7 @@ GEM
       uber (< 0.2.0)
     retriable (3.1.2)
     rexml (3.2.5)
-    rmagick (5.1.0)
+    rmagick (5.2.0)
       pkg-config (~> 1.4)
     roo (2.9.0)
       nokogiri (~> 1)

@@ -25,3 +25,30 @@ SchoolChampion.all.each do |school|
   group_by_contests = school.sertification_member_contests.group_by(&:number_member_contest)
   SertificationMemberContest.render_to_pdf(school, group_by_contests)
 end
+
+SERTIFIKAT KURANG
+1. Harapan 3 - Donor darah (smpn 1 cikancung)
+- Refan Saefan
+2. HARAPAN 1 - PP Putri (smpn 2 banjaran)
+- Sri Natha Agista
+- Kirania Larasati Dwi Riyadini
+3. Juara 3 - PP Putri (smpn 3 ciparay
+- Natasya Nurhasanah
+- Dewi Nur Malasari
+
+PERTOLONGAN PERTAMA PUTRA (SMPN 2 DAYEUHKOLOT)
+JUARA 3
+1. M. GAZA AL GAZY
+2. M. AZKA P
+
+["", "SMPN 3 CIPARAY", "SMPN 2 DAYEUHKOLOT"]
+{'NAMA LENGKAP' => '', 'MATA LOMBA' => '', position: }
+
+lists = { "SMPN 1 CIKANCUNG" => [{ 'NAMA LENGKAP' => 'Refan Saefan', 'MATA LOMBA' => 'DONOR DARAH SUKARELA', position: 6 }],
+          "SMPN 2 BANJARAN"=> [{'NAMA LENGKAP' => 'Sri Natha Agista', 'MATA LOMBA' => 'PERTOLONGAN PERTAMA PUTRI', position: 4}, {'NAMA LENGKAP' => 'Kirania Larasati Dwi Riyadini', 'MATA LOMBA' => 'PERTOLONGAN PERTAMA PUTRI', position: 4}],
+          "SMPN 3 CIPARAY" => [{'NAMA LENGKAP' => 'Natasya Nurhasanah', 'MATA LOMBA' => 'PERTOLONGAN PERTAMA PUTRI', position: 3 }, {'NAMA LENGKAP' => 'Dewi Nur Malasari', 'MATA LOMBA' => 'PERTOLONGAN PERTAMA PUTRI', position: 3 }],
+          "SMPN 2 DAYEUHKOLOT" => [{'NAMA LENGKAP' => 'M. GAZA AL GAZY', 'MATA LOMBA' => 'PERTOLONGAN PERTAMA PUTRA', position: 3 }, {'NAMA LENGKAP' => 'M. AZKA P', 'MATA LOMBA' => 'PERTOLONGAN PERTAMA PUTRA', position: 3 }] }
+
+SERTIFIKAT JUMUM
+SMAN 1 Baleendah 
+SMPN 3 CILEUNYI

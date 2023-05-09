@@ -74,7 +74,7 @@ class Sertification < ApplicationRecord
 
   def self.generate_all_piagam
     self.all.each do |sertification|
-      file_sertification  = Rails.root.join("app/assets/images/blank_image.png")
+      file_sertification  = Rails.root.join("app/assets/images/piagam_penghargaan.png")
       current_folder      = sertification.get_current_folder_file
       file_name_png       = "#{sertification.name_file}.png"
       current_folder      = current_folder.join(file_name_png)
@@ -86,23 +86,24 @@ class Sertification < ApplicationRecord
       magick_draw.pointsize = 38
       magick_draw.gravity = Magick::CenterGravity
       magick_draw.font_weight = Magick::BoldWeight
-      # if sertification.name_file.split('WIRA').length >= 2
-      #   split_name = sertification.name_file.split('WIRA').map(&:strip)
-      #   first_name = "#{split_name[0]} WIRA"
-      #   second_name = split_name[1]
-      # else
-      #   split_name = sertification.name_file.split('MADYA').map(&:strip)
-      #   first_name = "#{split_name[0]} MADYA"
-      #   second_name = split_name[1]
-      # end
+      if sertification.name_file.split('WIRA').length >= 2
+        split_name = sertification.name_file.split('WIRA').map(&:strip)
+        first_name = "#{split_name[0]} WIRA"
+        second_name = split_name[1]
+      else
+        split_name = sertification.name_file.split('MADYA').map(&:strip)
+        first_name = "#{split_name[0]} MADYA"
+        second_name = split_name[1]
+      end
 
       # split_name = sertification.name_file.split('TANDU DARURAT OFFICIAL').map(&:strip)
       # first_name = "#{split_name[0]}"
       # second_name = "TANDU DARURAT OFFICIAL"
       magick_draw.annotate(canvas, 0,0,0,-650, sertification.name_file.split('->').last.strip)
+      magick_draw.annotate(canvas, 0,0,0,-400, sertification.list_contest)
       # magick_draw.annotate(canvas, 0,0,0,-400, sertification.name_file)
       # magick_draw.annotate(canvas, 0,0,0,-380, second_name)
-      # magick_draw.annotate(canvas, 0,0,0,-300, 'Perlombaan')
+      magick_draw.annotate(canvas, 0,0,0,-300, 'Perlombaan')
 
       canvas.write(current_folder)
 
@@ -121,17 +122,19 @@ class Sertification < ApplicationRecord
   end
 
   def self.render_to_pdf
-    self.create_folder_jumum
-    margin_pdf = { top: 0, bottom: 0, left: 0, right: 0 }
-    pdf_html = ActionController::Base.new.render_to_string(template: 'schools/export_sertification_member_contest.pdf.erb',
-                                                           layout: 'layouts/application.pdf',
-                                                           locals: { member_contests: self.all },
-                                                           page_size: 'A4', margin: margin_pdf)
-    pdf       = WickedPdf.new.pdf_from_string(pdf_html)
-    save_path = Rails.root.join('public', 'uploads', "Auxilium D'Uno", "CUSTOM", "JUARA-UMUM.pdf")
+    self.all.each_with_index do |sert, idx|
+      self.create_folder_jumum
+      margin_pdf = { top: 0, bottom: 0, left: 0, right: 0 }
+      pdf_html = ActionController::Base.new.render_to_string(template: 'schools/export_sertification_member_contest.pdf.erb',
+                                                             layout: 'layouts/application.pdf',
+                                                             locals: { member_contests: [sert] },
+                                                             page_size: 'A4', margin: margin_pdf)
+      pdf       = WickedPdf.new.pdf_from_string(pdf_html)
+      save_path = Rails.root.join('public', 'uploads', "Auxilium D'Uno", "CUSTOM", "JUARA-UMUM-#{idx}.pdf")
 
-    File.open(save_path, 'wb') do |file|
-      file << pdf
+      File.open(save_path, 'wb') do |file|
+        file << pdf
+      end
     end
   end
 

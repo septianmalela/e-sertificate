@@ -26,11 +26,17 @@ class SertificationMemberContest < ApplicationRecord
       school
     end
 
-    def create_sertification_member_contest(school, param_row)
-      sertification = school.sertification_member_contests.new(name: param_row['NAMA LENGKAP'],
-                                                               list_contest: param_row['MATA LOMBA'],
-                                                               position: param_row['JUARA'],
-                                                               number_member_contest: param_row['NOMOR PESERTA'].strip).save
+    # def create_sertification_member_contest(school, param_row)
+    #   sertification = school.sertification_member_contests.new(name: param_row['NAMA LENGKAP'],
+    #                                                            list_contest: param_row['MATA LOMBA'],
+    #                                                            position: param_row['JUARA'],
+    #                                                            number_member_contest: param_row['NOMOR PESERTA'].strip).save
+    # end
+
+    def create_sertification_member_contest(school, lists)
+      lists.each do |param_row|
+        sertification = school.sertification_member_contests.create(name: param_row['NAMA LENGKAP'], list_contest: param_row['MATA LOMBA'], position: param_row['JUARA'])
+      end
     end
 
     def render_to_pdf(school, sertification_member_contests)

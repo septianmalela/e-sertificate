@@ -49,7 +49,7 @@ class School < ApplicationRecord
     end
 
     def generate_member_contest_sertification
-      School.where.not(name_school: ['SMPN 2 KATAPANG', 'SMP BINA NEGARA 2', 'SMPN 1 CIKANCUNG']).each do |school|
+      School.all.each do |school|
         school.member_contests.each do |member_contest|
           member_contest.generate_sertification
         end

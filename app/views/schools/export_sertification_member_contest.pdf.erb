@@ -12,7 +12,7 @@
     <%# end %>
 
     <% member_contests.each do |member_contest| %>
-      <%= wicked_pdf_image_tag member_contest.url_file rescue nil %>
+      <%= wicked_pdf_image_tag member_contest.url_link %>
       <%# { width: 1430, height: 1000 } %>
     <% end %>
   </body>
